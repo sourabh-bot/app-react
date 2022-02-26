@@ -34,21 +34,21 @@ export default function TextForm(props){
         <div className="container" style={{color: props.mode==='dark'?'white':'black'}}>
             <h2>{props.heading}</h2>
             <div className="mb-3">
-                <textarea className="form-control" id="textBox" rows="8" value={text} onChange={textAreaChangeHandler} style={{backgroundColor: props.mode==='dark'? '#042743': 'white', color:props.mode=== 'dark'?'white': 'black'}}></textarea>
+                <textarea className="form-control" id="textBox" rows="8" value={text} onChange={textAreaChangeHandler} style={{backgroundColor: props.mode==='dark'? 'rgb(29 66 96)': 'white', color:props.mode=== 'dark'?'white': 'black'}}></textarea>
             </div>
-            <button className="btn btn-primary mx-1" onClick={upperCaseClickHandler}>Convert to Uppercase</button>
-            <button className="btn btn-primary mx-1" onClick={lowerCaseClickHandler}>Convert to Lowercase</button>
-            <button className="btn btn-primary mx-1" onClick={reverseTextHandler}>Reverse Text</button>
-            <button className="btn btn-primary mx-1" onClick={clearTextHandler}>Clear Text</button>
+            <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={upperCaseClickHandler}>Convert to Uppercase</button>
+            <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={lowerCaseClickHandler}>Convert to Lowercase</button>
+            <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={reverseTextHandler}>Reverse Text</button>
+            <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={clearTextHandler}>Clear Text</button>
         </div>
         <div className="container my-5" style={{color: props.mode==='dark'?'white':'black'}}>
             <h2>Your text summary</h2>
-            <p>{text.split(" ").length} words and {text.length} characters</p>
-            <p>{0.008 * text.split(" ").length} Min reading time</p>
+            <p>{text.split(" ").filter((element)=>{ return element.length !== 0;}).length} words and {text.length} characters</p>
+            <p>{0.008 * text.split(" ").filter((element)=>{ return element.length !== 0;}).length} Min reading time</p>
         </div>
         <div className="container my-5" style={{color: props.mode==='dark'?'white':'black'}}>
             <h2>Preview</h2>
-            <p>{text.length>0?text:"Enter something in the above textbox to preview it here"}</p>
+            <p>{text.length>0?text:"Nothing to preiview!"}</p>
         </div>
     
     </>);    
